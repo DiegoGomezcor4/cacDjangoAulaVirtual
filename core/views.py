@@ -2,7 +2,7 @@ from django.http import HttpResponse
 from django.shortcuts import render
 
 def index(request):
-    return HttpResponse("Hola gente")
+    return render(request, "index.html")
 
 
 def alumnos_listado(request):
