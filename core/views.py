@@ -6,13 +6,10 @@ def index(request):
 
 
 def alumnos_listado(request):
-    return HttpResponse("""
-         <ul>
-                <li>pepe</li>
-                <li>maria</li>
-                <li>bruno</li>               
-        </ul>
-        """)
+   context = {
+       'usuario' : 'Diego Gomez',
+    }
+   return render(request, "alumnos_listado.html", context)
 
 
 def alumnos_detalle(request, nombre_alumno):
