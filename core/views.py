@@ -1,3 +1,4 @@
+from datetime import datetime
 from django.http import HttpResponse
 from django.shortcuts import render
 
@@ -7,7 +8,9 @@ def index(request):
 
 def alumnos_listado(request):
    context = {
-       'usuario' : 'Diego Gomez',
+       'usuario' : "DIEGO",
+       'fecha' : datetime.now(),
+       'es_instructor': False,
     }
    return render(request, "alumnos_listado.html", context)
 
