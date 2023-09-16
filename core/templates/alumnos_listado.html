@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listado Alumnos</title>
+</head>
+<body>
+    <header>
+        <h1>Bienvenido {{usuario}} al aula virtual</h1>
+        <h2>Listado de alumnos</h2>
+        <p>dia de la fecha: {{ fecha }}</p>
+
+        {% if es_instructor %}
+            <p style="color: red;">Rol: es intructor</p>
+        {% else %}
+            <p style="color: green;">Rol: es estudiante</p>
+
+        {% endif %}
+
+    </header>
+    <nav>
+        <ul>
+            <li><a href="{% url 'index' %}">Home</a></li>
+            <li><a href="{% url 'alumnos_listado' %}">Listado de alumnos</a></li>
+            <li><a href="{% url 'alumnos_activos' %}">Alumnos activos</a></li>
+        </ul>
+    </nav>
+    <main>
+        <h2>2023</h2>
+        <ul>
+            <li>
+                <p>Nombre</p>
+                <p>Apellido</p>
+                <p>Curso</p>
+            </li>
+        </ul>
+    </main>
+    <footer></footer>
+    
+</body>
+</html>
