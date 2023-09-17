@@ -31,3 +31,13 @@ def alumnos_historico(request, year):
 
 def alumnos_estado(request, estado):
     return HttpResponse(f"<h1> filtrar alumnos por estado: {estado}</h1>")
+
+
+def alumnos_detalle_activos(request, nombre_alumno):
+    nombre_a = nombre_alumno
+
+    context = {
+        'nombre' : nombre_a
+    }
+
+    return render(request, "alumnos_detalle_activos.html", context)
