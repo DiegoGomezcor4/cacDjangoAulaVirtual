@@ -3,9 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Aula Virtual 2.0 - {% block title %} Aula Virtual 2.0 {% endblock %}</title>
 </head>
 <body>
-    
+    <header>
+        <h1>alua virtual 2.0</h1>
+        <h2>{% block section_title %} {% endblock %}</h2>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="{% url 'index' %}">Home</a></li>
+            <li><a href="{% url 'alumnos_listado' %}">Listado de alumnos</a></li>
+            <li><a href="{% url 'alumnos_activos' %}">Alumnos activos</a></li>
+        </ul>
+    </nav>
+    <main>
+        {% block content %} {% endblock %}
+    </main>
+    <footer>
+        <p>Todos los derechos reservados - Codo a codo 2023</p>
+    </footer>
 </body>
 </html>

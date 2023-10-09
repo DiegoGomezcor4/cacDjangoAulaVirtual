@@ -8,6 +8,16 @@
 <body>
     <header>
         <h1>Bienvenidos al aula virtual 2.0</h1>
+        <h1>Bienvenido {{ usuario }} al aula virtual</h1>
+        <h2>Listado de alumnos</h2>
+        <p>dia de la fecha: {{ fecha }}</p>
+
+        {% if es_instructor %}
+            <p style="color: red;">Rol: es intructor</p>
+        {% else %}
+            <p style="color: green;">Rol: es estudiante</p>
+
+        {% endif %}
     </header>
     <nav>
         <ul>
