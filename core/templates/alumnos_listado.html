@@ -26,14 +26,19 @@
             <li><a href="{% url 'alumnos_activos' %}">Alumnos activos</a></li>
         </ul>
     </nav>
-    <main>
+    <main> 
         <h2>2023</h2>
+        <p>listado de alumnos</p>
         <ul>
-            <li>
-                <p>Nombre</p>
-                <p>Apellido</p>
-                <p>Curso</p>
-            </li>
+            {% for nombre_alumno in listado_alumnos %}
+                <li>
+                    <p>{{nombre_alumno | upper}}</p>   
+                </li>
+            {% empty %}
+                
+                <p>No hay inscriptos</p>
+            {% endfor %}
+            <p>cantidad de incriptos: {{cant_inscriptos}}</p>
         </ul>
     </main>
     <footer></footer>

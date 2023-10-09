@@ -7,10 +7,23 @@ def index(request):
 
 
 def alumnos_listado(request):
+   
+   # esta data vendra de la base de datos
+   listado = [
+        'carlos lopez',
+           'maria del cerro',
+           'juan perez',
+           'patricio estrella',
+           'bob sponja'
+   ]
+
    context = {
        'usuario' : "DIEGO",
        'fecha' : datetime.now(),
        'es_instructor': False,
+       'cant_inscriptos' : 0,
+       'listado_alumnos' : listado,
+       'cant_inscriptos' : len(listado)
     }
    return render(request, "alumnos_listado.html", context)
 
