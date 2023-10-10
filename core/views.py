@@ -3,7 +3,12 @@ from django.http import HttpResponse
 from django.shortcuts import render
 
 def index(request):
-    return render(request, "index.html")
+    context = {
+       'usuario' : "DIEGO",
+       'fecha' : datetime.now(),
+       'es_instructor': False
+    }
+    return render(request, "core/index.html", context)
 
 
 def alumnos_listado(request):
@@ -25,7 +30,7 @@ def alumnos_listado(request):
        'listado_alumnos' : listado,
        'cant_inscriptos' : len(listado)
     }
-   return render(request, "alumnos_listado.html", context)
+   return render(request, "core/alumnos_listado.html", context)
 
 
 def alumnos_detalle(request, nombre_alumno):
@@ -53,4 +58,4 @@ def alumnos_detalle_activos(request, nombre_alumno):
         'nombre' : nombre_a
     }
 
-    return render(request, "alumnos_detalle_activos.html", context)
+    return render(request, "core/alumnos_detalle_activos.html", context)

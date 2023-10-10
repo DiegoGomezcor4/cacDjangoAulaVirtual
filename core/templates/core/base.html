@@ -1,23 +1,17 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aula Virtual 2.0</title>
+    <title>Aula Virtual 2.0 - {% block title %} Aula Virtual 2.0 {% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'core/css/base.css' %}">
+    {% block extra_css %}{% endblock %}
 </head>
 <body>
     <header>
-        <h1>Bienvenidos al aula virtual 2.0</h1>
-        <h1>Bienvenido {{ usuario }} al aula virtual</h1>
-        <h2>Listado de alumnos</h2>
-        <p>dia de la fecha: {{ fecha }}</p>
-
-        {% if es_instructor %}
-            <p style="color: red;">Rol: es intructor</p>
-        {% else %}
-            <p style="color: green;">Rol: es estudiante</p>
-
-        {% endif %}
+        <h1>alua virtual 2.0</h1>
+        <h2>{% block section_title %} {% endblock %}</h2>
     </header>
     <nav>
         <ul>
@@ -26,9 +20,11 @@
             <li><a href="{% url 'alumnos_activos' %}">Alumnos activos</a></li>
         </ul>
     </nav>
-    <main></main>
-    <footer></footer>
-    
-    
+    <main>
+        {% block content %} {% endblock %}
+    </main>
+    <footer>
+        {% include "core/footer.html" %}
+    </footer>
 </body>
 </html>

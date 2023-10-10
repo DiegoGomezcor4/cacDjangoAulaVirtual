@@ -1,0 +1,21 @@
+{% extends "core/base.html" %}
+{% load static %}
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'core/css/index.css' %}">
+{% endblock %}
+{% block title %} {% endblock %}
+{% block section_title %} {% endblock %}
+{% block content %} 
+   <h2>Bienvenidos al aula virtual 2.0</h2>
+   <p>Bienvenido {{ usuario }} al aula virtual</p>
+
+   <p>dia de la fecha: {{ fecha }}</p>
+
+   {% if es_instructor %}
+       <p style="color: red;">Rol: es intructor</p>
+   {% else %}
+       <p style="color: green;">Rol: es estudiante</p>
+
+   {% endif %}
+{% endblock %}
+
