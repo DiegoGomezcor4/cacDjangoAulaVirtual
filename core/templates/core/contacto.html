@@ -6,5 +6,12 @@
 {% block title %} Envia tus comentarios {% endblock %}
 {% block section_title %} Completa el siguiente formulario {% endblock %}
 {% block content %} 
+
+    <form action="">
+        {% csrf_token %}
+        {{ contacto_form.as_p }}
+
+        <input type="submit">
+    </form>
    
 {% endblock %}
