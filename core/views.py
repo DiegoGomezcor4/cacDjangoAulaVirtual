@@ -10,6 +10,12 @@ def index(request):
     }
     return render(request, "core/index.html", context)
 
+def contacto(request):
+    context = {
+
+    }
+    return render(request, 'core/contacto.html',context)
+
 
 def alumnos_listado(request):
    

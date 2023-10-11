@@ -9,5 +9,6 @@ urlpatterns = [
     re_path(r'alumnos/historico/(?P<year>[0-9]{4})/$', views.alumnos_historico, name='alumnos_historico'),
     path("alumnos/activos", views.alumnos_estado, {'estado': 'activo'}, name="alumnos_activos"),
     path("alumnos/inactivos", views.alumnos_estado, {'estado': 'inactivo'}, name="alumnos_inactivos"),
-    path("alumnos/detalle/activos/<str:nombre_alumno>", views.alumnos_detalle_activos,name='alumnos_detalle_activos')   
-]
+    path("alumnos/detalle/activos/<str:nombre_alumno>", views.alumnos_detalle_activos,name='alumnos_detalle_activos'),
+    path('contacto',views.contacto, name='contacto')   
+] 
