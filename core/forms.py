@@ -5,3 +5,4 @@ class ContactoForm(forms.Form):
     apellido = forms.CharField(label="Apellido de contacto",required=True)
     mail = forms.EmailField(label="mail",required=True)
     mensaje = forms.CharField(widget=forms.Textarea)
+    fecha = forms.DateField()
