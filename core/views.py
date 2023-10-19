@@ -13,24 +13,24 @@ def index(request):
     return render(request, "core/index.html", context)
 
 def contacto(request):
-    if request.method == "POST":
-        #instaciamos un formulario con datos
-        formulario = ContactoForm(request.POST)
+        if request.method == "POST":
+            #instaciamos un formulario con datos
+            formulario = ContactoForm(request.POST)
 
-        #validarlo
-        if formulario.is_valid():
-            #dar de alta la informacion
-            return redirect(reverse("index"))
+            #validarlo
+            if formulario.is_valid():
+                #dar de alta la informacion
+                return redirect(reverse('index'))
 
 
-    else:
-        formulario = ContactoForm()
+        else:
+            formulario = ContactoForm()
 
-    context = {
-        'contacto_form' : formulario
-
-    }
-    return render(request, 'core/contacto.html',context)
+            context = {
+                'contacto_form' : formulario
+            }
+            return render(request, 'core/contacto.html',context)
+        
 
 
 def alumnos_listado(request):

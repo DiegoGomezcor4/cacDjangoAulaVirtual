@@ -10,8 +10,6 @@
     <form action="{% url 'contacto' %}">
         {% csrf_token %}
         {{ contacto_form.as_p }}
-
-        {{contacto_form.apellid}}
         <input type="submit">
     </form>
    
