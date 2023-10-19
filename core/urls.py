@@ -10,5 +10,5 @@ urlpatterns = [
     path("alumnos/activos", views.alumnos_estado, {'estado': 'activo'}, name="alumnos_activos"),
     path("alumnos/inactivos", views.alumnos_estado, {'estado': 'inactivo'}, name="alumnos_inactivos"),
     path("alumnos/detalle/activos/<str:nombre_alumno>", views.alumnos_detalle_activos,name='alumnos_detalle_activos'),
-    path('contacto',views.contacto, name='contacto')   
+    path('contacto',views.contacto, name='contacto'),
 ] 
