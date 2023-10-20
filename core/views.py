@@ -14,8 +14,8 @@ def index(request):
 
 def contacto(request):
         
-        if request.method == "POST":
-            
+        if request.method == 'POST':
+
             #instaciamos un formulario con datos
             contacto_form = ContactoForm(request.POST)
 
@@ -28,7 +28,7 @@ def contacto(request):
         else: #get
             contacto_form = ContactoForm()
 
-            return render(request, 'core/contacto.html',{'contacto_form' : contacto_form})
+        return render(request, 'core/contacto.html',{'contacto_form' : contacto_form})
         
 
 

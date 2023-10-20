@@ -7,7 +7,7 @@
 {% block section_title %} Completa el siguiente formulario {% endblock %}
 {% block content %} 
 
-    <form action="{% url 'contacto' %}">
+    <form method="post" action="{% url 'contacto' %}">
         {% csrf_token %}
         {{ contacto_form.as_p }}
         <input type="submit">
