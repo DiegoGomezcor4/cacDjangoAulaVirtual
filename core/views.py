@@ -1,6 +1,7 @@
 from datetime import datetime
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
+from django.contrib import messages
 from django.urls import reverse
 from .forms import ContactoForm
 
@@ -21,6 +22,8 @@ def contacto(request):
 
             #validarlo
             if contacto_form.is_valid():
+
+                messages.info(request, "Consulta enviada con exito")
                 #dar de alta la informacion
                 return redirect(reverse('index'))
 
