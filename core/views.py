@@ -4,6 +4,7 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.urls import reverse
 from .forms import ContactoForm
+from .models import Persona
 
 def index(request):
     context = {
@@ -24,6 +25,10 @@ def contacto(request):
             if contacto_form.is_valid():
 
                 messages.info(request, "Consulta enviada con exito")
+                
+                p1 = Persona(nombre='Carlos',apellido='Lopez')
+                p1.save()
+                
                 #dar de alta la informacion
                 return redirect(reverse('index'))
 
@@ -37,14 +42,16 @@ def contacto(request):
 
 def alumnos_listado(request):
    
+   listado = Persona.objects.all()
+   
    # esta data vendra de la base de datos
-   listado = [
-        'carlos lopez',
-           'maria del cerro',
-           'juan perez',
-           'patricio estrella',
-           'bob sponja'
-   ]
+#    listado = [
+#         'carlos lopez',
+#            'maria del cerro',
+#            'juan perez',
+#            'patricio estrella',
+#            'bob sponja'
+#    ]
 
    context = {
        'usuario' : "DIEGO",
