@@ -6,6 +6,7 @@ class ContactoForm(forms.Form):
     nombre = forms.CharField(label="nombre de contacto",required=True)
     apellido = forms.CharField(label="Apellido de contacto",required=True)
     edad = forms.IntegerField(label="Edad")
+    dni = forms.IntegerField(label="DNI")
     mail = forms.EmailField(label="mail",required=True)
     mensaje = forms.CharField(widget=forms.Textarea)
 

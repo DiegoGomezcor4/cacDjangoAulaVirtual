@@ -26,7 +26,12 @@ def contacto(request):
 
                 messages.info(request, "Consulta enviada con exito")
                 
-                p1 = Persona(nombre='Carlos',apellido='Lopez')
+                p1 = Persona(
+                    nombre=contacto_form.cleaned_data['nombre'],
+                    apellido=contacto_form.cleaned_data['apellido'],
+                    email=contacto_form.cleaned_data['mail'],
+                    dni=contacto_form.cleaned_data['dni']
+                )
                 p1.save()
                 
                 #dar de alta la informacion
