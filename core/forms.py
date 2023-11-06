@@ -9,6 +9,7 @@ class ContactoForm(forms.Form):
     dni = forms.IntegerField(label="DNI")
     mail = forms.EmailField(label="mail",required=True)
     mensaje = forms.CharField(widget=forms.Textarea)
+    legajo = forms.CharField(label="legajo",required=True)
 
     def clean_edad(self):
         if self.cleaned_data['edad'] < 18:
