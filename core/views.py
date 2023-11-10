@@ -3,8 +3,8 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.urls import reverse
-from .forms import ContactoForm, AltaAlumnoForm
-from .models import Persona,Estudiante
+from .forms import ContactoForm
+from .models import Persona
 
 def index(request):
     context = {
@@ -26,11 +26,12 @@ def contacto(request):
 
                 messages.info(request, "Consulta enviada con exito")
                 
-                p1 = Persona(
+                p1 = Estudiante(
                     nombre=contacto_form.cleaned_data['nombre'],
                     apellido=contacto_form.cleaned_data['apellido'],
                     email=contacto_form.cleaned_data['mail'],
-                    dni=contacto_form.cleaned_data['dni']
+                    dni=contacto_form.cleaned_data['dni'],
+                    legajo=contacto_form.cleaned_data['legajo']
                 )
                 p1.save()
                 
