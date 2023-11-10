@@ -9,10 +9,16 @@ class Persona(models.Model):
     email = models.EmailField(max_length=150, verbose_name='Email')
     dni = models.IntegerField(verbose_name='DNI')
     
+    # validacion en el backend
     def clean_dni(self):
         if not (0 < self.cleaneed_data['dni'] <= 99999999):
             raise ValidationError('el dni debe ser un numero positivo de 8 digitos')
         return self.cleaneed_data['dni']
+        # si no da error devuelve la informacion
+        
+    
+    def nombre_completo(self):
+        return f"{self.nombre} {self.apellido}"
         
     class Meta:
         abstract = True

@@ -3,8 +3,8 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.urls import reverse
-from .forms import ContactoForm
-from .models import Persona
+from .forms import ContactoForm, AltaAlumnoForm
+from .models import Persona,Estudiante
 
 def index(request):
     context = {
@@ -42,12 +42,40 @@ def contacto(request):
             contacto_form = ContactoForm()
 
         return render(request, 'core/contacto.html',{'contacto_form' : contacto_form})
+     
         
 
+def alta_alumno(request):
+    context = {}
+    
+    if request.method == 'POST':
+        alta_alumno_form = AltaAlumnoForm(request.POST)
+        
+        if alta_alumno_form.is_valid():
+            nuevo_alumno = Estudiante(
+                nombre= alta_alumno_form.cleaned_data['nombre'],
+                apellido= alta_alumno_form.cleaned_data['apellido'],
+                email= alta_alumno_form.cleaned_data['email'],
+                dni= alta_alumno_form.cleaned_data['dni'],
+                legajo= alta_alumno_form.cleaned_data['legajo'],
+            )
+            nuevo_alumno.save()
+        
+            messages.info(request, "alumno dado de alta correctamente")
+            return redirect(reverse('alumnos_listado'))
 
+    else:
+        alta_form_form = AltaAlumnoForm()
+        
+    context['alta_alumno_form'] = AltaAlumnoForm()
+    
+    return render(request, 'core/alta_alumno.html', context)
+
+
+    
 def alumnos_listado(request):
    
-   listado = Persona.objects.all()
+   listado = Estudiante.objects.all()
    
    # esta data vendra de la base de datos
 #    listado = [

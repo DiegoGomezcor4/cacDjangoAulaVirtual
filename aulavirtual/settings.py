@@ -79,12 +79,12 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'cac_2023',
         'USER':'postgres',
-        'PASSWORD':'dj1ng4',
+        'PASSWORD':'mipass',
         'HOST':'127.0.0.1',
         'PORT':'5432',
     }
 }
-
+ 
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
