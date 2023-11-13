@@ -11,7 +11,11 @@
     <ul>
         {% for nombre_alumno in listado_alumnos %}
             <li>
-                <p>{{nombre_alumno.nombre | upper}} {{nombre_alumno.apellido | upper}}</p>   
+                <p>Nombre: {{nombre_alumno.nombre | title}}</p>
+                <p>Apellido: {{nombre_alumno.apellido | title}}</p>
+                <p>Email: {{nombre_alumno.email}}</p>   
+                <p>Dni: {{nombre_alumno.dni}}</p>   
+                <p>Numero de legajo: {{nombre_alumno.legajo}}</p>   
             </li>
         {% empty %}
                 
