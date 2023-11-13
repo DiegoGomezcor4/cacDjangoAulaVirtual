@@ -4,7 +4,9 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.urls import reverse
 from .forms import ContactoForm, AltaAlumnoForm
-from .models import Estudiante
+from .models import Docente, Estudiante
+from django.views.generic.edit import CreateView
+from django.views.generic.list import ListView
 
 def index(request):
     context = {
@@ -124,3 +126,15 @@ def alumnos_detalle_activos(request, nombre_alumno):
     }
 
     return render(request, "core/alumnos_detalle_activos.html", context)
+
+
+# vistas basadas en clases
+
+class DocenteListView(ListView):
+    model = Docente
+    context_object_name = 'listado_docentes'
+    template_name = 'core/docentes_listado.html'
+    ordering = ['cuit']
+
+class DocenteCreateView(CreateView):
+    pass

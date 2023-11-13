@@ -11,5 +11,6 @@ urlpatterns = [
     path("alumnos/inactivos", views.alumnos_estado, {'estado': 'inactivo'}, name="alumnos_inactivos"),
     path("alumnos/detalle/activos/<str:nombre_alumno>", views.alumnos_detalle_activos,name='alumnos_detalle_activos'),
     path('contacto',views.contacto, name='contacto'),
-    path('alumnos/alta',views.alta_alumno,name='alta_alumno')
+    path('alumnos/alta',views.alta_alumno,name='alta_alumno'),
+    path('docentes/listado', views.DocenteListView.as_view(), name='docentes_listado'),
 ] 
