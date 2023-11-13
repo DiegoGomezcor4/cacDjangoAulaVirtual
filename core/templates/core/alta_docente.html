@@ -1,0 +1,16 @@
+{% extends "core/base.html" %}
+{% load static %}
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'core/css/alta_docente.css' %}">
+{% endblock %}
+{% block title %} Alta de Docentes {% endblock %}
+{% block section_title %} Completa el siguiente formulario {% endblock %}
+{% block content %} 
+    <h3>Datos del nuevo Docente<h3>
+    <form method="post" action="{% url 'alta_docente' %}">
+        {% csrf_token %}
+        {{ alta_docente_form.as_p }}
+        <input type="submit">
+    </form>
+   
+{% endblock %}

@@ -137,4 +137,11 @@ class DocenteListView(ListView):
     ordering = ['cuit']
 
 class DocenteCreateView(CreateView):
-    pass
+    model = Docente
+    context_object_name = 'alta_docente_form'
+    template_name = 'core/alta_docente.html'
+    success_url = 'docentes_listado'
+    fields = '__all__'
+    
+    
+    
