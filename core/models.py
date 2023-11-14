@@ -15,8 +15,8 @@ class Persona(models.Model):
             raise ValidationError('el dni debe ser un numero positivo de 8 digitos')
         return self.cleaneed_data['dni']
         # si no da error devuelve la informacion
+
         
-    
     def nombre_completo(self):
         return f"{self.nombre} {self.apellido}"
         

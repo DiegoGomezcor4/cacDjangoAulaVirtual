@@ -1,4 +1,5 @@
 from datetime import datetime
+from django.db import IntegrityError
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib import messages
@@ -62,7 +63,11 @@ def alta_alumno(request):
                 dni= alta_alumno_form.cleaned_data['dni'],
                 legajo= alta_alumno_form.cleaned_data['legajo'],
             )
-            nuevo_alumno.save()
+            try:
+                nuevo_alumno.save()
+            except IntegrityError as ie:
+                messages.error(request, "Ocurrio un error al intentar dar de alta un alumno")
+                return redirect(reverse('index'))
         
             messages.info(request, "alumno dado de alta correctamente")
             return redirect(reverse('alumnos_listado'))
