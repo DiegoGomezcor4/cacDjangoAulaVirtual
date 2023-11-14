@@ -24,8 +24,8 @@
         <p>cantidad de incriptos: {{cant_inscriptos}}</p>
     </ul>
 
-    {% if listado_docente.len > 0 %}
-        <p>cantidad de docentes registrados: {{ listado_docentes.len }}</p>
+    {% if listado_docentes.count > 0 %}
+        <p>cantidad de docentes registrados: {{ listado_docentes.count }}</p>
 
     {% else %}
         <p>No hay inscriptos</p>
