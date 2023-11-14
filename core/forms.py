@@ -1,5 +1,8 @@
+from typing import Any
 from django import forms
 from django.core.exceptions import ValidationError
+
+from core.models import Docente
 
 
 class ContactoForm(forms.Form):
@@ -32,3 +35,23 @@ class AltaAlumnoForm(forms.Form):
     dni = forms.IntegerField(label='DNI', required=True)
     email = forms.EmailField(label='email', required=True)
     legajo = forms.CharField(label='legago', required=True)
+    
+# Modelform    
+class AltaDocenteModelForm(forms.ModelForm):
+    class Meta:
+        model = Docente 
+        fields = '__all__'
+    
+    # validaciones    
+    def clean_cuit(self):
+        cuit = self.cuit.strip() # eliminar espacios en blanco al principio y al final
+        
+        if not cuit.isdigit():
+            raise ValidationError('EL CUIT DEBE CONTENER SOLO DIGITOS')
+        
+        if len(cuit) != 11:
+            raise ValidationError('El cuit debe tener 11 digitos')
+        
+        self.changed_data['cuit'] = cuit
+        return self.changed_data['cuit']
+        

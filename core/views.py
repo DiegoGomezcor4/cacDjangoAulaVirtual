@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.urls import reverse
-from .forms import ContactoForm, AltaAlumnoForm
+from .forms import AltaDocenteModelForm, ContactoForm, AltaAlumnoForm
 from .models import Docente, Estudiante
 from django.views.generic.edit import CreateView
 from django.views.generic.list import ListView
@@ -138,10 +138,12 @@ class DocenteListView(ListView):
 
 class DocenteCreateView(CreateView):
     model = Docente
-    context_object_name = 'alta_docente_form'
+    #context_object_name = 'alta_docente_form'
     template_name = 'core/alta_docente.html'
-    success_url = 'docentes_listado'
+    success_url = 'listado'
+    #form_class = AltaDocenteModelForm
     fields = '__all__'
+    
     
     
     
