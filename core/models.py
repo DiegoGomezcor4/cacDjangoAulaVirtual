@@ -7,15 +7,9 @@ class Persona(models.Model):
     nombre = models.CharField(max_length=30, verbose_name='Nombre')
     apellido = models.CharField(max_length=30, verbose_name='Apellido')
     email = models.EmailField(max_length=150, verbose_name='Email')
-    dni = models.IntegerField(verbose_name='DNI', unique=True) # validacion por base de datos capo unico
+    dni = models.IntegerField(verbose_name='dni', unique=True) # validacion por base de datos capo unico
     
-    # validacion en el backend
-    def clean_dni(self):
-        if not (0 < self.cleaneed_data['dni'] <= 99999999):
-            raise ValidationError('el dni debe ser un numero positivo de 8 digitos')
-        return self.cleaneed_data['dni']
-        # si no da error devuelve la informacion
-
+    
         
     def nombre_completo(self):
         return f"{self.nombre} {self.apellido}"
@@ -38,6 +32,9 @@ class Docente(Persona):
 
 class Categoria(models.Model):
     nombre = models.CharField(max_length=50, verbose_name='Nombre')
+
+    def __str__(self):
+        return self.nombre
     
 class Cursos(models.Model):
     nombre = models.CharField(max_length=150, verbose_name='Nombre')
@@ -45,5 +42,16 @@ class Cursos(models.Model):
     fecha_inicio = models.DateField(verbose_name='Fecha de inicio')
     cantidad_clases = models.IntegerField(verbose_name='Cantidad de clases')
     categoria = models.ForeignKey(Categoria,on_delete=models.CASCADE)
-    estudiantes = models.ManyToManyField(Estudiante)
-    
+    estudiantes = models.ManyToManyField(Estudiante, through="Inscripcion") # esto me falta para corregir mi proyecto
+
+    def __str__(self):
+        return f"{self.nombre} {self.fecha_inicio}"
+
+
+class Inscripcion(models.Model):
+    estudiante = models.ForeignKey(Estudiante, on_delete=models.CASCADE)
+    curso = models.ForeignKey(Cursos, on_delete=models.CASCADE)
+    fecha = models.DateField(verbose_name="Fecha de inscripcion")
+
+    def __str__(self):
+        return f"{self.estudiante.nombre_completo()} - {self.curso} - {self.fecha}"

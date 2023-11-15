@@ -1,6 +1,10 @@
+from audioop import reverse
+from pyexpat.errors import messages
 from typing import Any
+from urllib import request
 from django import forms
 from django.core.exceptions import ValidationError
+from django.shortcuts import redirect
 
 from core.models import Docente
 
@@ -35,6 +39,22 @@ class AltaAlumnoForm(forms.Form):
     dni = forms.IntegerField(label='DNI', required=True)
     email = forms.EmailField(label='email', required=True)
     legajo = forms.CharField(label='legago', required=True)
+
+    # validacion en el backend  - funciona
+    def clean_dni(self):
+        dni = self.cleaned_data['dni']
+
+        try:
+
+            if (0 < dni <= 99999999):
+                return dni
+
+        except:
+            messages.error(request, "el numeo de documento no puede ser negativo")
+            return redirect(reverse('index'))
+        
+
+        
     
 # Modelform    
 class AltaDocenteModelForm(forms.ModelForm):
@@ -54,4 +74,16 @@ class AltaDocenteModelForm(forms.ModelForm):
         
         self.changed_data['cuit'] = cuit
         return self.changed_data['cuit']
+    
+    # validacion en el backend - no funciona
+    def clean_dni(self):
+        dni = self.cleaned_data['DNI']
+
+        if dni < 0:
+            raise forms.ValidationError('El DNI no puede ser negativo')
+
+        # if not (0 < dni <= 99999999):
+        #     raise forms.ValidationError('El DNI debe ser un número positivo de 8 dígitos')
+
+        return dni
         
