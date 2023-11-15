@@ -19,6 +19,10 @@ class Persona(models.Model):
         
     def nombre_completo(self):
         return f"{self.nombre} {self.apellido}"
+    
+    
+    def __str__(self):
+        return self.nombre_completo()
         
     class Meta:
         abstract = True
