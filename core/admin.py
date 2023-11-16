@@ -5,6 +5,12 @@ from django.forms.models import ModelMultipleChoiceField
 from django.http.request import HttpRequest
 from core.models import Estudiante, Docente, Cursos, Categoria, Inscripcion
 
+class CacAdminSite(admin.AdminSite): # modificando el admin site
+    site_header = 'Sistema de administracion del Aula Virtual 2.0'
+    site_title = 'Administracion para superusers'
+    index_title = 'Administracion del Sitio'
+    empty_value_display = 'vacio'
+
 class EstudianteAdmin(admin.ModelAdmin): # modifica la visualizacion en el admin
     list_display = ('legajo', 'apellido', 'nombre')
     list_editable = ('apellido', 'nombre')
