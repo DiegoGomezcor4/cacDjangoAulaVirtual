@@ -8,6 +8,8 @@ from .forms import AltaDocenteModelForm, ContactoForm, AltaAlumnoForm
 from .models import Docente, Estudiante
 from django.views.generic.edit import CreateView
 from django.views.generic.list import ListView
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 def index(request):
     context = {
@@ -80,7 +82,7 @@ def alta_alumno(request):
     return render(request, 'core/alta_alumno.html', context)
 
 
-    
+@login_required  
 def alumnos_listado(request):
    
    listado = Estudiante.objects.all().order_by('dni')
@@ -104,7 +106,7 @@ def alumnos_listado(request):
     }
    return render(request, "core/alumnos_listado.html", context)
 
-
+@login_required
 def alumnos_detalle(request, nombre_alumno):
     return HttpResponse(
         f"""
@@ -113,7 +115,7 @@ def alumnos_detalle(request, nombre_alumno):
         """
     )
 
-
+@login_required
 def alumnos_historico(request, year):
     return HttpResponse(f"<h1> historico de alumnos del año: {year}</h1>")
 
@@ -135,7 +137,7 @@ def alumnos_detalle_activos(request, nombre_alumno):
 
 # vistas basadas en clases
 
-class DocenteListView(ListView):
+class DocenteListView(LoginRequiredMixin, ListView):
     model = Docente
     context_object_name = 'listado_docentes'
     template_name = 'core/docentes_listado.html'
